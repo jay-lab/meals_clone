@@ -12,7 +12,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(24, 10, 24, 50),
+      padding: const EdgeInsets.symmetric(horizontal: 20),
       child: GridView.builder(
           // padding: const EdgeInsets.symmetric(horizontal: 24),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
