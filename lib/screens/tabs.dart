@@ -18,6 +18,11 @@ class _TabScreenState extends State<TabScreen> {
     });
   }
 
+  final List<Map<String, dynamic>> tabsList = [
+    {'page': const CategoriesScreen(), 'title': "categories"},
+    {'page': const Placeholder(), 'title': "Placeholder"},
+  ];
+
   @override
   Widget build(BuildContext context) {
 
@@ -26,11 +31,11 @@ class _TabScreenState extends State<TabScreen> {
     //   const CategoriesScreen(),
     //   const Placeholder(),
     // ];
-
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Categories'),
+        title: Text(tabsList[_selectedPageIndex]['title'], style: TextStyle(color: Colors.white),),
         centerTitle: true,
+        backgroundColor: Colors.black,
       ),
 
       // ▼ 1. List<Widget> 사용방식 => 탭의  상태유지 불가
@@ -39,13 +44,15 @@ class _TabScreenState extends State<TabScreen> {
       // ▼ 2. IndexedStack 사용방식 => 탭의 상태유지 가능
       body: IndexedStack(
         index: _selectedPageIndex,
-        children: const [
-          CategoriesScreen(),
-          Placeholder(),
-          // 다른 페이지 추가...
-        ],
+        // children: const [
+        //   CategoriesScreen(),
+        //   Placeholder(),
+        //   // 다른 페이지 추가...
+        // ],
+        children: tabsList.map((item) => item['page'] as Widget).toList(),
       ),
       bottomNavigationBar: BottomNavigationBar(
+        elevation: 1,
         items: const [
           BottomNavigationBarItem(
               icon: Icon(
@@ -60,10 +67,14 @@ class _TabScreenState extends State<TabScreen> {
               ),
               label: '즐겨찾기')
         ],
-        showSelectedLabels: false, // 선택된 레이블 숨기기
+        showSelectedLabels: true, // 선택된 레이블 숨기기
         showUnselectedLabels: false, // 선택되지 않은 레이블 숨기기
         currentIndex: _selectedPageIndex,
         onTap: _selectPage,
+        // type: BottomNavigationBarType.shifting, // 탭 전환시 소소한 애니메이션 < 그런데 적용하면 backgroundColor가 벗겨지는 현상이 발생.
+        selectedItemColor: Colors.white, // 선택된 요소 색
+        unselectedItemColor: Colors.grey, // 선택되지 않은 요소 색
+        backgroundColor: Colors.black,
       ),
     );
   }
