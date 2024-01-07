@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meals_clone/screens/meal_detail.dart';
 
 class CategoryGridItem extends StatelessWidget {
   final int itemNumber;
@@ -10,19 +11,28 @@ class CategoryGridItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        const Placeholder(),
-        Center(
-          child: Text(
-            itemNumber.toString(),
-            style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
-                color: Colors.deepOrangeAccent),
+    return InkWell(
+      onTap: () {
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (ctx) =>
+            const MealDetailsScreen()
+          )
+        );
+      },
+      child: Stack(
+        children: [
+          const Placeholder(),
+          Center(
+            child: Text(
+              itemNumber.toString(),
+              style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                  color: Colors.deepOrangeAccent),
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
