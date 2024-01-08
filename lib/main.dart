@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:meals_clone/screens/meal_detail2.dart';
 import 'package:meals_clone/screens/tabs.dart';
 
 
@@ -15,21 +17,27 @@ final theme = ThemeData(
 
 void main() {
   runApp(
-    const ProviderScope(
+    ProviderScope(
       child: App(),
     ),
   );
 }
 
 class App extends StatelessWidget {
-  const App({super.key});
+  App({super.key});
 
+  final GoRouter _router = GoRouter(routes: [
+    GoRoute(path: "/", builder: ((context, state)=> const TabScreen())),
+    GoRoute(path: "/detail2", builder: ((context, state)=> const MealDetailsScreen2()))
+  ]);
+  
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      routerConfig: _router,
       debugShowCheckedModeBanner: false,
       theme: theme,
-      home: const TabScreen(),
+      // home: const TabScreen(),
     );
   }
 }
