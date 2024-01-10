@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:meals_clone/screens/tabs.dart';
+import 'package:go_router/go_router.dart';
 
 class MealDetailsScreen2 extends StatelessWidget {
   const MealDetailsScreen2({super.key});
@@ -13,18 +13,12 @@ class MealDetailsScreen2 extends StatelessWidget {
       body: Card(
         color: Colors.orange,
         child: Center(
-          child: GestureDetector(
-            onTap: () {
-              // Navigator.of(context).push(
-              //   MaterialPageRoute(builder: (ctx) => const TabScreen())
-              // );
-
-              // 첫번째 스택으로 돌아가기 위한 로직
-              Navigator.of(context).popUntil(
-                ModalRoute.withName('/'),
-              );
+          child: ElevatedButton(
+            onPressed: () {
+              // ------------ Go Router 사용 방식으로 첫번째 화면으로 이동 ------------
+              context.go("/");
             },
-            child: const Text('Test Page - 2'),
+            child: const Text("첫번째 탭 화면으로 이동"),
           ),
         ),
       ),
