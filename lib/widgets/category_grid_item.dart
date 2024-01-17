@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:meals_clone/screens/meal_detail.dart';
 
 class CategoryGridItem extends StatelessWidget {
@@ -13,11 +14,7 @@ class CategoryGridItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.of(context).push(MaterialPageRoute(
-            builder: (ctx) =>
-            const MealDetailsScreen()
-          )
-        );
+        context.push("/detail");
       },
       child: Stack(
         children: [
