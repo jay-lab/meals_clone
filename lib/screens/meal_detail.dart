@@ -24,13 +24,13 @@ class MealDetailsScreen extends StatelessWidget {
               children: [
                 ElevatedButton(
                     onPressed: () {
-                      context.go("/detail2");
+                      context.push("/detail2");
                     },
                     child: const Text('다음 Depth로 Move')),
                 const SizedBox(height: 60),
                 GestureDetector(
                     onTap: () {
-                      Navigator.of(context).pop();
+                      context.go("/");
                     },
                     child: const Text('여기 누르면 첫번째 화면으로 이동(Navigator pop)')),
               ],
